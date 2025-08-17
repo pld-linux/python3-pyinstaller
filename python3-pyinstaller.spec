@@ -4,8 +4,7 @@
 %bcond_without	tests	# unit tests
 
 %define		module	pyinstaller
-Summary:	-
-Summary(pl.UTF-8):	-
+Summary:	PyInstaller bundles a Python application and all its dependencies into a single package
 Name:		python3-%{module}
 Version:	6.15.0
 Release:	0.1
@@ -22,6 +21,7 @@ BuildRequires:	python3-altgraph
 #BuildRequires:	python3-idlelib
 BuildRequires:	python3-packaging >= 22.0
 BuildRequires:	python3-pillow-qt
+BuildRequires:	python3-psutil
 BuildRequires:	python3-pyinstaller-hooks-contrib >= 2025.8
 BuildRequires:	python3-pytest-timeout
 %endif
