@@ -60,6 +60,7 @@ Dokumentacja API modułu Pythona %{module}.
 %{__rm} tests/functional/test_{qt,splash}.py
 
 %build
+export STRIP=/bin/true
 %py3_build
 
 %if %{with tests}
