@@ -28,9 +28,11 @@ BuildRequires:	python3-pytest-timeout
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
+BuildRequires:	python3-sphinxcontrib-towncrier
 BuildRequires:	sphinx-pdg-3
 %endif
 Requires:	python3-modules >= 1:3.2
+ExclusiveArch:	%{x8664} %{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -101,8 +103,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/PyInstaller/bootloader
 %dir %{py3_sitedir}/PyInstaller/bootloader/Darwin-64bit
 %attr(755,root,root) %{py3_sitedir}/PyInstaller/bootloader/Darwin-64bit/run*
+%ifarch %{ix86}
+%dir %{py3_sitedir}/PyInstaller/bootloader/Linux-32bit-intel
+%attr(755,root,root) %{py3_sitedir}/PyInstaller/bootloader/Linux-32bit-intel/run*
+%endif
+%ifarch %{x8664}
 %dir %{py3_sitedir}/PyInstaller/bootloader/Linux-64bit-intel
 %attr(755,root,root) %{py3_sitedir}/PyInstaller/bootloader/Linux-64bit-intel/run*
+%endif
 %dir %{py3_sitedir}/PyInstaller/bootloader/Windows-32bit-intel
 %attr(755,root,root) %{py3_sitedir}/PyInstaller/bootloader/Windows-32bit-intel/run*.exe
 %dir %{py3_sitedir}/PyInstaller/bootloader/Windows-64bit-intel
