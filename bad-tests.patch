@@ -1,0 +1,40 @@
+idlelib tries to run despite missing deps
+requests needs network
+
+--- pyinstaller-6.15.0/tests/functional/test_libraries.py.orig	2025-04-05 03:31:20.000000000 +0200
++++ pyinstaller-6.15.0/tests/functional/test_libraries.py	2025-08-16 21:06:12.803325532 +0200
+@@ -149,19 +149,6 @@
+     )
+ 
+ 
+-# The tkinter module may be available for import, but not actually importable due to missing shared libraries.
+-# Therefore, we need to use `can_import_module`-based skip decorator instead of `@importorskip`.
+-@importorskip('idlelib')
+-@pytest.mark.skipif(not can_import_module("tkinter"), reason="tkinter cannot be imported.")
+-def test_idlelib(pyi_builder):
+-    pyi_builder.test_source(
+-        """
+-        # This file depends on loading some icons, located based on __file__.
+-        import idlelib.tree
+-        """
+-    )
+-
+-
+ @importorskip('keyring')
+ @skipif(
+     is_linux,
+@@ -194,14 +181,6 @@
+         """)
+ 
+ 
+-@importorskip('requests')
+-def test_requests(pyi_builder, data_dir):
+-    # NOTE: including the `data_dir` fixture copies files needed by this test!
+-    # We collect the data into frozen application.
+-    add_data_arg = f"{data_dir / '*'}:."
+-    pyi_builder.test_script('pyi_lib_requests.py', pyi_args=['--add-data', add_data_arg])
+-
+-
+ @importorskip('urllib3.packages.six')
+ def test_urllib3_six(pyi_builder):
+     # Test for pre-safe-import urllib3.packages.six.moves.
