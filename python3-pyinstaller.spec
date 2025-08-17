@@ -7,7 +7,7 @@
 Summary:	PyInstaller bundles a Python application and all its dependencies into a single package
 Name:		python3-%{module}
 Version:	6.15.0
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/pyinstaller/%{module}-%{version}.tar.gz
